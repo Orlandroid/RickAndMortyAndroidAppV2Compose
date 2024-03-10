@@ -6,4 +6,7 @@ class CharactersViewModel : ViewModel() {
     private val charactersDummyProvider = CharactersDummyProvider()
     fun getCharacters() = charactersDummyProvider.getCharacters()
 
+    fun getRandomCharacter() = charactersDummyProvider.getCharacters()[0]
+
+
 }

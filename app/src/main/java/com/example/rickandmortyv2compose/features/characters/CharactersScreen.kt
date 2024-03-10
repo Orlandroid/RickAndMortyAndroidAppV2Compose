@@ -32,6 +32,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.rickandmortyv2compose.R
+import com.example.rickandmortyv2compose.features.Screens
 import com.example.rickandmortyv2compose.features.base.BaseView
 import com.example.rickandmortyv2compose.features.base.BaseViewContent
 
@@ -44,10 +45,10 @@ fun CharactersScreen(navController: NavController) {
         Column(Modifier.verticalScroll(rememberScrollState())) {
             viewModel.getCharacters().forEach {
                 ItemCharacter(
-                    nameCharacter = it.name,
-                    status = it.status,
-                    colorStatus = Color.Green
-                )
+                    nameCharacter = it.name, status = it.status, colorStatus = Color.Green
+                ) {
+                    navController.navigate(Screens.CharacterDetail.route)
+                }
             }
         }
     }
@@ -56,9 +57,10 @@ fun CharactersScreen(navController: NavController) {
 
 @Composable
 fun ItemCharacter(
-    nameCharacter: String, status: String, colorStatus: Color
+    nameCharacter: String, status: String, colorStatus: Color, clickOnCharacter: () -> Unit = {}
 ) {
     Card(
+        onClick = { clickOnCharacter.invoke() },
         border = BorderStroke(2.dp, Color.Black),
         shape = RoundedCornerShape(8.dp),
         modifier = Modifier.padding(top = 8.dp, start = 8.dp, end = 8.dp)
