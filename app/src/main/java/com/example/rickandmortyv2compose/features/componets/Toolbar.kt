@@ -13,7 +13,9 @@ import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -32,5 +34,11 @@ fun Toolbar(
             }
         }
     })
+}
 
+
+@Preview(showBackground = true)
+@Composable
+fun SimpleComposablePreview() {
+    Toolbar(rememberNavController(), title = "Test")
 }

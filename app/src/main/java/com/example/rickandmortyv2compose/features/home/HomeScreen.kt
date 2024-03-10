@@ -2,8 +2,6 @@ package com.example.rickandmortyv2compose.features.home
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -28,19 +26,18 @@ import androidx.constraintlayout.compose.Dimension
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.rickandmortyv2compose.R
-import com.example.rickandmortyv2compose.features.componets.Toolbar
+import com.example.rickandmortyv2compose.features.Screens
+import com.example.rickandmortyv2compose.features.base.BaseView
+import com.example.rickandmortyv2compose.features.base.BaseViewContent
 
 @Composable
 fun HomeScreen(navController: NavController) {
     val charactersImage = painterResource(id = R.drawable.rick_and_morty)
     val episodesImage = painterResource(id = R.drawable.img_episode)
     val locationsImage = painterResource(id = R.drawable.img_location)
-    Column {
-        Toolbar(
-            navController = navController,
-            withBackIcon = false,
-            title = stringResource(id = R.string.home)
-        )
+    val myBaseViewContent =
+        BaseViewContent(title = stringResource(id = R.string.home))
+    BaseView(navController = navController, baseViewContent = myBaseViewContent) {
         ConstraintLayout(
             modifier = Modifier.fillMaxSize()
         ) {
@@ -58,7 +55,9 @@ fun HomeScreen(navController: NavController) {
                     }, textOnCard = stringResource(
                     R.string.characters
                 ), painter = charactersImage
-            )
+            ) {
+                navController.navigate(Screens.ListOfCharacters.route)
+            }
 
             ImageCard(
                 modifier = Modifier
@@ -92,9 +91,13 @@ fun HomeScreen(navController: NavController) {
 
 @Composable
 fun ImageCard(
-    textOnCard: String, modifier: Modifier = Modifier, painter: Painter
+    textOnCard: String,
+    modifier: Modifier = Modifier,
+    painter: Painter,
+    clickOnCard: () -> Unit = {}
 ) {
     Card(
+        onClick = clickOnCard,
         modifier = modifier, colors = CardDefaults.cardColors(
             containerColor = Color.White,
         ), border = BorderStroke(2.dp, Color.Black), shape = RoundedCornerShape(8.dp)
