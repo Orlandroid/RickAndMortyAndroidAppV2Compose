@@ -26,9 +26,10 @@ import androidx.constraintlayout.compose.Dimension
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.rickandmortyv2compose.R
-import com.example.rickandmortyv2compose.features.Screens
+import com.example.rickandmortyv2compose.features.navigation.Screens
 import com.example.rickandmortyv2compose.features.base.BaseView
 import com.example.rickandmortyv2compose.features.componets.ToolbarConfiguration
+import com.example.rickandmortyv2compose.ui.theme.AlwaysWhite
 
 @Composable
 fun HomeScreen(navController: NavController) {
@@ -36,8 +37,9 @@ fun HomeScreen(navController: NavController) {
     val episodesImage = painterResource(id = R.drawable.img_episode)
     val locationsImage = painterResource(id = R.drawable.img_location)
     BaseView(
+        background = AlwaysWhite,
         navController = navController,
-        ToolbarConfiguration(title = stringResource(id = R.string.home))
+        toolbarConfiguration = ToolbarConfiguration(title = stringResource(id = R.string.home))
     ) {
         ConstraintLayout(
             modifier = Modifier.fillMaxSize()
@@ -70,7 +72,9 @@ fun HomeScreen(navController: NavController) {
                     }, textOnCard = stringResource(
                     R.string.episodes
                 ), painter = episodesImage
-            )
+            ) {
+                navController.navigate(Screens.ListOfEpisodes.route)
+            }
 
             ImageCard(
                 modifier = Modifier

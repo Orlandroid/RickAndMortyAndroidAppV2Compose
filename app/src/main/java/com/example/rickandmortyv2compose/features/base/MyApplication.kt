@@ -1,4 +1,4 @@
-package com.example.rickandmortyv2compose
+package com.example.rickandmortyv2compose.features.base
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

@@ -16,6 +16,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.example.rickandmortyv2compose.ui.theme.AlwaysWhite
+import com.example.rickandmortyv2compose.ui.theme.StatusBarColor
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -40,6 +42,7 @@ fun Toolbar(
             if (toolbarConfiguration.isWithBackIcon) {
                 IconButton(onClick = { navController.popBackStack() }) {
                     Icon(
+                        tint = AlwaysWhite,
                         imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                         contentDescription = "Go Back"
                     )
@@ -52,8 +55,8 @@ fun Toolbar(
 data class ToolbarConfiguration(
     val title: String = "Android Developer",
     val isWithBackIcon: Boolean = true,
-    val toolbarBackgroundColor: Color = Color.White,
-    val toolbarTextColor: Color = Color.Black,
+    val toolbarBackgroundColor: Color = StatusBarColor,
+    val toolbarTextColor: Color = AlwaysWhite,
     val clickOnBackButton: () -> Unit = {}
 )
 

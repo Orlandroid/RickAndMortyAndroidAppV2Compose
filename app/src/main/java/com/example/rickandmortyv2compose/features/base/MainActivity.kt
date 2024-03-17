@@ -1,4 +1,4 @@
-package com.example.rickandmortyv2compose
+package com.example.rickandmortyv2compose.features.base
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
+import com.example.rickandmortyv2compose.features.navigation.Navigation
 import com.example.rickandmortyv2compose.ui.theme.RickAndMortyV2ComposeTheme
 import dagger.hilt.android.AndroidEntryPoint
 
