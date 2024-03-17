@@ -34,14 +34,16 @@ import androidx.navigation.compose.rememberNavController
 import com.example.rickandmortyv2compose.R
 import com.example.rickandmortyv2compose.features.Screens
 import com.example.rickandmortyv2compose.features.base.BaseView
-import com.example.rickandmortyv2compose.features.base.BaseViewContent
+import com.example.rickandmortyv2compose.features.componets.ToolbarConfiguration
 
 @Composable
 fun CharactersScreen(navController: NavController) {
     val viewModel: CharactersViewModel = hiltViewModel()
-    val myBaseViewContent =
-        BaseViewContent(isWithBackIcon = true, title = stringResource(id = R.string.characters))
-    BaseView(navController = navController, baseViewContent = myBaseViewContent) {
+    BaseView(
+        navController = navController, ToolbarConfiguration(
+            isWithBackIcon = true, title = stringResource(id = R.string.characters)
+        )
+    ) {
         Column(Modifier.verticalScroll(rememberScrollState())) {
             viewModel.getCharacters().forEach {
                 ItemCharacter(

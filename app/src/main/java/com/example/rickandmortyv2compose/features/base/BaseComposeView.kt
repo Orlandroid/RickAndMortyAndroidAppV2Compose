@@ -4,25 +4,21 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavController
 import com.example.rickandmortyv2compose.features.componets.Toolbar
+import com.example.rickandmortyv2compose.features.componets.ToolbarConfiguration
 
 
 @Composable
 fun BaseView(
     navController: NavController,
-    baseViewContent: BaseViewContent = BaseViewContent(),
+    toolbarConfiguration: ToolbarConfiguration = ToolbarConfiguration(),
     content: @Composable () -> Unit
 ) {
     Column {
-        if (baseViewContent.isWithBackIcon) {
+        if (toolbarConfiguration.isWithBackIcon) {
             Toolbar(
-                navController = navController, title = baseViewContent.title
+                navController = navController, toolbarConfiguration
             )
         }
         content()
     }
 }
-
-data class BaseViewContent(
-    val isWithBackIcon: Boolean = true,
-    val title: String = ""
-)
