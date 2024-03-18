@@ -6,6 +6,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.rickandmortyv2compose.features.character_detail.CharacterDetail
 import com.example.rickandmortyv2compose.features.characters.CharactersScreen
+import com.example.rickandmortyv2compose.features.episode_detail.EpisodeDetailScreen
 import com.example.rickandmortyv2compose.features.episodes.EpisodesScreen
 import com.example.rickandmortyv2compose.features.home.HomeScreen
 
@@ -25,6 +26,9 @@ fun Navigation() {
         }
         composable(route = Screens.ListOfEpisodes.route) {
             EpisodesScreen(navController)
+        }
+        composable(route = Screens.EpisodeDetail.route) {
+            EpisodeDetailScreen(navController)
         }
     }
 }

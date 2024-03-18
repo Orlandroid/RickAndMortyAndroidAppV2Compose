@@ -88,7 +88,9 @@ fun HomeScreen(navController: NavController) {
                     }, textOnCard = stringResource(
                     R.string.locations
                 ), painter = locationsImage
-            )
+            ) {
+                //navigation to locations
+            }
         }
     }
 

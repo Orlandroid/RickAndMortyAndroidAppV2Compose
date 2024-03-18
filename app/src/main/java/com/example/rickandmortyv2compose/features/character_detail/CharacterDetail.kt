@@ -20,6 +20,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -32,6 +33,7 @@ import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import com.example.rickandmortyv2compose.features.base.BaseView
 import com.example.rickandmortyv2compose.features.characters.CharactersViewModel
+import com.example.rickandmortyv2compose.features.componets.ItemKeyValue
 import com.example.rickandmortyv2compose.features.componets.ToolbarConfiguration
 
 @Composable
@@ -87,7 +89,8 @@ fun CharacterDetail(navController: NavController) {
                 ItemsTextWithValue(
                     layoutId = "",
                     myItems = ItemEntity(
-                        characterItem = getPropertiesLocation()
+                        characterItem = getPropertiesLocation(),
+                        hasHeader = Pair(true, "Last seen location")
                     )
                 )
             }
@@ -97,19 +100,19 @@ fun CharacterDetail(navController: NavController) {
 
 private fun getPropertiesCharacter() =
     listOf(
-        Property("Status:", "Alive"),
-        Property("Species:", "Human"),
-        Property("Gender:", "Male"),
-        Property("Number of episodes:", "15")
+        Property("Status", "Alive"),
+        Property("Species", "Human"),
+        Property("Gender", "Male"),
+        Property("Number of episodes", "15")
     )
 
 
 private fun getPropertiesLocation() =
     listOf(
-        Property("Name:", "Citadel of ricks"),
-        Property("Type:", "Space tation"),
-        Property("Dimension:", "Unknowkn"),
-        Property("Number of residents:", "101")
+        Property("Name", "Citadel of ricks"),
+        Property("Type", "Space tation"),
+        Property("Dimension", "Unknowkn"),
+        Property("Number of residents", "101")
     )
 
 
@@ -134,28 +137,16 @@ fun ItemsTextWithValue(myItems: ItemEntity, layoutId: String) {
             if (myItems.hasHeader.first) {
                 Text(
                     text = myItems.hasHeader.second,
-                    style = TextStyle(fontSize = 24.sp),
+                    style = TextStyle(fontSize = 26.sp, fontWeight = FontWeight.Bold),
                     modifier = Modifier.padding(bottom = 8.dp)
                 )
             }
             myItems.let { items ->
                 for (currentItem in items.characterItem.indices) {
-                    Row(
-                        Modifier.fillMaxWidth()
-                    ) {
-                        Text(
-                            text = items.characterItem[currentItem].key,
-                            fontSize = 24.sp,
-                        )
-                        Spacer(
-                            modifier = Modifier.size(24.dp)
-                        )
-                        Text(
-                            text = items.characterItem[currentItem].value,
-                            fontSize = 24.sp,
-                        )
-
-                    }
+                    ItemKeyValue(
+                        key = items.characterItem[currentItem].key,
+                        value = items.characterItem[currentItem].value
+                    )
                 }
             }
         }

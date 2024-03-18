@@ -1,14 +1,12 @@
 package com.example.rickandmortyv2compose.features.episodes
 
-import android.media.Image
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -17,11 +15,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -35,6 +29,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.rickandmortyv2compose.R
 import com.example.rickandmortyv2compose.features.base.BaseView
 import com.example.rickandmortyv2compose.features.componets.ToolbarConfiguration
+import com.example.rickandmortyv2compose.features.navigation.Screens
 import com.example.rickandmortyv2compose.ui.theme.AlwaysWhite
 import com.example.rickandmortyv2compose.ui.theme.Gris
 
@@ -48,18 +43,23 @@ fun EpisodesScreen(navController: NavController) {
     ) {
         Column(Modifier.verticalScroll(rememberScrollState())) {
             viewModel.getEpisodes().forEach {
-                ItemEpisode(it)
+                ItemEpisode(it) {
+                    navController.navigate(Screens.EpisodeDetail.route)
+                }
             }
         }
     }
 }
 
 @Composable
-fun ItemEpisode(episode: Episode) {
+fun ItemEpisode(episode: Episode, clickOnItem: () -> Unit) {
     ConstraintLayout(
         Modifier
             .fillMaxWidth()
             .background(AlwaysWhite)
+            .clickable {
+                clickOnItem.invoke()
+            }
     ) {
         val (layout, icon, spacer) = createRefs()
         Column(
