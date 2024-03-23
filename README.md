@@ -1,1 +1,1 @@
-# Owner-avatar-RickAndMortyAndroidAppV2Compose
+# RickAnd Morty JetpackCompose
