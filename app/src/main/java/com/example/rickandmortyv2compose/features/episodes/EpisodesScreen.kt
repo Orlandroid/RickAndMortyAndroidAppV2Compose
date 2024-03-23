@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -41,10 +42,12 @@ fun EpisodesScreen(navController: NavController) {
             isWithBackIcon = true, title = stringResource(id = R.string.episodes)
         )
     ) {
-        Column(Modifier.verticalScroll(rememberScrollState())) {
+        LazyColumn {
             viewModel.getEpisodes().forEach {
-                ItemEpisode(it) {
-                    navController.navigate(Screens.EpisodeDetail.route)
+                item {
+                    ItemEpisode(it) {
+                        navController.navigate(Screens.EpisodeDetail.route)
+                    }
                 }
             }
         }

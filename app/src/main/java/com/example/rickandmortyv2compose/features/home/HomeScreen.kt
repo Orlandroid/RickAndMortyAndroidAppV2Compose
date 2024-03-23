@@ -89,7 +89,7 @@ fun HomeScreen(navController: NavController) {
                     R.string.locations
                 ), painter = locationsImage
             ) {
-                //navigation to locations
+                navController.navigate(Screens.ListOfLocations.route)
             }
         }
     }

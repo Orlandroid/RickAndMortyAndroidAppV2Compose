@@ -1,13 +1,10 @@
 package com.example.rickandmortyv2compose.features.episode_detail
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -30,7 +27,6 @@ import com.example.rickandmortyv2compose.features.characters.CharactersViewModel
 import com.example.rickandmortyv2compose.features.characters.ItemCharacter
 import com.example.rickandmortyv2compose.features.componets.ItemKeyValue
 import com.example.rickandmortyv2compose.features.componets.ToolbarConfiguration
-import com.example.rickandmortyv2compose.features.episodes.EpisodesViewModel
 import com.example.rickandmortyv2compose.features.navigation.Screens
 import com.example.rickandmortyv2compose.ui.theme.AlwaysWhite
 
@@ -87,15 +83,13 @@ fun EpisodeDetailScreen(navController: NavController) {
                     modifier = Modifier.padding(top = 16.dp)
                 )
                 LazyColumn(
-                    Modifier 
+                    Modifier
                         .padding(top = 16.dp)
                 ) {
                     characterViewModel.getCharacters().forEach {
                         item {
                             ItemCharacter(
-                                nameCharacter = it.name,
-                                status = it.status,
-                                colorStatus = Color.Green
+                                character = it, colorStatus = Color.Green
                             ) {
                                 navController.navigate(Screens.CharacterDetail.route)
                             }

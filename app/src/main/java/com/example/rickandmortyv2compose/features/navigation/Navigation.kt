@@ -9,6 +9,8 @@ import com.example.rickandmortyv2compose.features.characters.CharactersScreen
 import com.example.rickandmortyv2compose.features.episode_detail.EpisodeDetailScreen
 import com.example.rickandmortyv2compose.features.episodes.EpisodesScreen
 import com.example.rickandmortyv2compose.features.home.HomeScreen
+import com.example.rickandmortyv2compose.features.location_detail.LocationDetail
+import com.example.rickandmortyv2compose.features.locations.LocationsScreen
 
 
 @Composable
@@ -29,6 +31,12 @@ fun Navigation() {
         }
         composable(route = Screens.EpisodeDetail.route) {
             EpisodeDetailScreen(navController)
+        }
+        composable(route = Screens.ListOfLocations.route) {
+            LocationsScreen(navController)
+        }
+        composable(route = Screens.LocationDetail.route) {
+            LocationDetail(navController)
         }
     }
 }
